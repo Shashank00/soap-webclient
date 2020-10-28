@@ -7,12 +7,9 @@ import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
 import org.springframework.http.client.reactive.ReactorClientHttpConnector
-import org.springframework.http.codec.ClientCodecConfigurer
 import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
 import com.axis.webstarter.webclientsoap.wrapper.WebClientSoapWrapper
-import com.axis.webstarter.webclientsoap.encoders.Jaxb2SoapEncoder
-import org.springframework.http.codec.xml.Jaxb2XmlDecoder
 
 
 @Configuration
@@ -22,12 +19,10 @@ class WebClientSoapConfiguration {
             .tcpConfiguration { client ->
                 client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 30000)
             });
-
-    var exchangeStrategies = ExchangeStrategies.builder().codecs { clientCodecConfigure: ClientCodecConfigurer -> clientCodecConfigure.customCodecs().register(Jaxb2SoapEncoder()); clientCodecConfigure.customCodecs().register(Jaxb2XmlDecoder()) }.build();
     
     @Bean
     @Primary
-    fun webClient() = WebClient
+    fun webClient(exchangeStrategies: ExchangeStrategies) = WebClient
             .builder()
             .clientConnector(connector)
             .exchangeStrategies(exchangeStrategies)
