@@ -38,6 +38,7 @@ dependencies {
 
 	implementation("org.jsoup:jsoup:1.7.2")
 	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.1")
+	implementation("org.springframework.boot:spring-boot-starter-freemarker:2.3.4.RELEASE")
 }
 
 java {
