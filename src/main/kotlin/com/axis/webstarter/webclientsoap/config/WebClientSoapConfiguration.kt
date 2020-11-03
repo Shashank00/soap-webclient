@@ -6,10 +6,10 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.ComponentScan
 import org.springframework.context.annotation.Configuration
 import org.springframework.context.annotation.Primary
-import org.springframework.http.client.reactive.ReactorClientHttpConnector
-import org.springframework.web.reactive.function.client.ExchangeStrategies
 import org.springframework.web.reactive.function.client.WebClient
+import com.axis.webstarter.webclientsoap.filters.ToggleUrlFilter
 import com.axis.webstarter.webclientsoap.wrapper.WebClientSoapWrapper
+import org.springframework.http.client.reactive.ReactorClientHttpConnector
 
 
 @Configuration
@@ -19,13 +19,13 @@ class WebClientSoapConfiguration {
             .tcpConfiguration { client ->
                 client.option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 30000)
             });
-    
+
     @Bean
     @Primary
-    fun webClient(exchangeStrategies: ExchangeStrategies) = WebClient
+    fun webClient(toggleUrlFilter: ToggleUrlFilter) = WebClient
             .builder()
             .clientConnector(connector)
-            .exchangeStrategies(exchangeStrategies)
+            .filter(toggleUrlFilter)
             .build();
 
     @Bean
