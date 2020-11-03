@@ -31,16 +31,25 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("io.projectreactor:reactor-test")
+	testImplementation("io.mockk:mockk:1.10.0")
+	testImplementation("io.kotest:kotest-runner-junit5-jvm:4.0.5")
+	testImplementation("io.kotest:kotest-assertions-core-jvm:4.0.5")
+	testImplementation("io.kotest:kotest-property-jvm:4.0.5")
+	testImplementation("com.squareup.okhttp3:okhttp:4.6.0")
+	testImplementation("com.squareup.okhttp3:mockwebserver:4.6.0")
+
 	implementation ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	implementation ("org.glassfish.jaxb:jaxb-runtime:2.3.3")
+
+	implementation("org.jsoup:jsoup:1.7.2")
+	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.1")
+	implementation("org.springframework.boot:spring-boot-starter-freemarker:2.3.4.RELEASE")
 
 	annotationProcessor ("jakarta.xml.bind:jakarta.xml.bind-api:2.3.3")
 	annotationProcessor ("org.glassfish.jaxb:jaxb-runtime:2.3.3")
 	annotationProcessor ("javax.annotation:javax.annotation-api:1.3.2")
 
-	implementation("org.jsoup:jsoup:1.7.2")
-	implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.11.1")
-	implementation("org.springframework.boot:spring-boot-starter-freemarker:2.3.4.RELEASE")
 }
 
 java {
